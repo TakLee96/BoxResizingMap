@@ -36,10 +36,12 @@ function mouseDown(evt) {
         data.boxElem.style.width = "0px";
         data.boxElem.style.left = evt.clientX + "px";
         data.boxElem.style.top = evt.clientY + "px";
+        data.boxElem.style.cursor = "crosshair";
         data.boxElem.classList.add("box");
         data.boxElem.addEventListener("mousemove", mouseMove.bind(data.imageElem));
+        data.boxElem.addEventListener("mouseup", mouseUp.bind(data.imageElem));
 
-        document.body.appendChild(data.boxElem);
+        data.containerElem.appendChild(data.boxElem);
 
         data.box.x = evt.clientX;
         data.box.y = evt.clientY;
@@ -66,8 +68,8 @@ function mouseUp(evt) {
         var ratio = config.box.height / height;
         var rect = data.containerElem.getBoundingClientRect();
 
-        data.map.x += (rect.left - left) * ratio;
-        data.map.y += (rect.top - top) * ratio;
+        data.map.x += rect.left - data.map.x - ratio * (data.box.x - data.map.x);
+        data.map.y += rect.top - data.map.y - ratio * (data.box.y - data.map.y);
         this.style.left = data.map.x + "px";
         this.style.top = data.map.y + "px";
 
