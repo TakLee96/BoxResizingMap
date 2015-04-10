@@ -1,0 +1,16 @@
+Works:
+
+1) make draw box possible
+
+2) make zoom in possible
+
+
+Improvements:
+
+1) can resize border
+
+2) map auto return position
+
+3) stop empty div from flashing
+
+4) organize project folder
